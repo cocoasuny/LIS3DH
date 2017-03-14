@@ -1,0 +1,84 @@
+#ifndef _BMA250E_H_
+#define _BMA250E_H_
+
+#include <stdint.h>
+
+/* BMA250e SPI Port Definition*/
+#define BMA250E_SPI_PORT		        PT_BMA250E_SPI_PORT
+#define BMA250E_SPI_STE_PORT 	        PT_BMA250E_SPI_STE_PORT
+#define BMA250E_SPI_STE_PINSOURCE	    PT_BMA250E_SPI_STE_PINSOURCE
+#define BMA250E_SPI_SCLK_PINSOURCE	    PT_BMA250E_SPI_SCLK_PINSOURCE
+#define BMA250E_SPI_SOMI_PINSOURCE	    PT_BMA250E_SPI_SOMI_PINSOURCE
+#define BMA250E_SPI_SIMO_PINSOURCE	    PT_BMA250E_SPI_SIMO_PINSOURCE
+
+#define BMA250E_SPI_STE_PIN		        PT_BMA250E_SPI_STE_PIN
+#define BMA250E_SPI_SCLK_PIN	        PT_BMA250E_SPI_SCLK_PIN
+#define BMA250E_SPI_SOMI_PIN	        PT_BMA250E_SPI_SOMI_PIN
+#define BMA250E_SPI_SIMO_PIN	        PT_BMA250E_SPI_SIMO_PIN
+
+#define BMA250E_SPI                     PT_BMA250E_SPI
+
+#define RCC_APBxPeriph_SPI_BMA250E		PT_RCC_APBxPeriph_SPI_BMA250E
+
+#define BMA250E_SPI_STE_GPIO_CLK	    PT_BMA250E_SPI_STE_GPIO_CLK
+#define BMA250E_SPI_SCLK_GPIO_CLK	    PT_BMA250E_SPI_SCLK_GPIO_CLK
+#define BMA250E_SPI_SOMI_GPIO_CLK	    PT_BMA250E_SPI_SOMI_GPIO_CLK
+#define BMA250E_SPI_SIMO_GPIO_CLK	    PT_BMA250E_SPI_SIMO_GPIO_CLK
+
+
+/* 	Define for INT1/2 		*/
+#define BMA250E_INT1_GPIO_PORT    		PT_BMA250E_INT1_GPIO_PORT
+#define BMA250E_INT1_GPIO_PINSOURCE		PT_BMA250E_INT1_GPIO_PINSOURCE
+#define BMA250E_INT1_GPIO_PIN    		PT_BMA250E_INT1_GPIO_PIN
+#define BMA250E_INT1_GPIO_CLK			PT_BMA250E_INT1_GPIO_CLK
+
+#define BMA250E_INT2_GPIO_PORT    		PT_BMA250E_INT2_GPIO_PORT
+#define BMA250E_INT2_GPIO_PINSOURCE		PT_BMA250E_INT2_GPIO_PINSOURCE
+#define BMA250E_INT2_GPIO_PIN    		PT_BMA250E_INT2_GPIO_PIN
+#define BMA250E_INT2_GPIO_CLK			PT_BMA250E_INT2_GPIO_CLK
+
+#define BMA250E_INT1_EXTI_PORT          PT_BMA250E_INT1_EXTI_PORT
+#define BMA250E_INT1_EXTI_PIN           PT_BMA250E_INT1_EXTI_PIN
+#define BMA250E_INT1_EXTI_LINE          PT_BMA250E_INT1_EXTI_LINE
+
+#define BMA250E_INT2_EXTI_PORT          PT_BMA250E_INT2_EXTI_PORT
+#define BMA250E_INT2_EXTI_PIN           PT_BMA250E_INT2_EXTI_PIN
+#define BMA250E_INT2_EXTI_LINE          PT_BMA250E_INT2_EXTI_LINE
+
+#define BMA250E_SPI_WRITE               0x00
+#define BMA250E_SPI_READ                0x80
+
+typedef enum{BMA250E_ERROR = 0, BAM250E_CORR = !BMA250E_ERROR} BMA250E_STAT;
+
+/* BMA250E operate state */
+#define BMA250E_SPI_SUCCESS             0x00
+#define BMA250E_SPI_TIMEOUT             0x01
+#define BMA250E_READ_SUCCESS            0x02
+#define BMA250E_READ_FAIL               0x03
+#define BMA250E_WRITE_SUCCESS           0x04
+#define BMA250E_WRITE_FAIL              0x05
+
+/* BMA250E SPI define */
+#define RCC_APBxPeriph_SPI_BMA250E		    PT_RCC_APBxPeriph_SPI_BMA250E
+
+#define RCC_AHBPeriph_BMA250E_CSGPIO         PT_RCC_AHBPeriph_EEPROM_CSGPIO
+#define GPIO_PORT_BMA250E_CS                 PT_GPIO_PORT_EEPROM_CS
+#define GPIO_Pin_BMA250E_CS                  PT_GPIO_Pin_EEPROM_CS
+
+char BMA250E_SPI_Read(uint8_t dev_addr,uint8_t register_addr,uint8_t *register_data,uint8_t rd_len);
+char BMA250E_SPI_Write(uint8_t dev_addr,uint8_t register_addr,uint8_t *register_data,uint8_t wr_len);
+
+void BMA250E_SPI_Oper_Init(void);
+void BMA250E_SPI_Oper_DeInit(void);
+void BMA250E_Int1_Port_Enable(void);
+void BMA250E_Int1_Port_Disable(void);
+void BMA250E_Int2_Port_Enable(void);
+void BMA250E_Int2_Port_Disable(void);
+
+void BMA250E_Init_Step(void);
+void BMA250E_Init_SingleTap(void);
+void BMA250E_Init_Suspend(void);
+void BMA250E_Init_Stop(void);
+void BMA250E_Init_SpO2_MoveCheck(void);
+
+#endif
